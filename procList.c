@@ -62,8 +62,7 @@ void print_process_info(const char *pid) {
                 pw = getpwuid(uid);
                 
                 // In thông tin process
-                printf("Name: %s, PID: %s, User: %s, PPID: %d,, Cmdline: %s\n", process_name,
-                       pid, pw ? pw->pw_name : "Unknown", ppid, cmdline);
+                printf("%-40s %-10s %-15s %-10d %-30s\n", process_name, pid, pw ? pw->pw_name : "Unknown", ppid, cmdline);
             }
         }
     }
@@ -72,7 +71,7 @@ void print_process_info(const char *pid) {
 int main() {
     DIR *dir;
     struct dirent *ent;
-    
+    printf("%-40s %-10s %-15s %-10s %-30s\n", "Name", "PID", "User", "PPID", "Cmdline");
     dir = opendir("/proc");
     if (dir != NULL) {
         while ((ent = readdir(dir)) != NULL) {
